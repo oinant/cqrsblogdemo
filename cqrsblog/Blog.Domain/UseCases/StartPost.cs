@@ -21,7 +21,6 @@ namespace Blog.Domain.UseCases
         {
             var post = Post.Start(command.Author, command.Title);
             _postRepository.Add(post);
-            _postRepository.Save();
 
             await _mediator.PublishAndCommitDomainEvents(post, cancellationToken);
         }

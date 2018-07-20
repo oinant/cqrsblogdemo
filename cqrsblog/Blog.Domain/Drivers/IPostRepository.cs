@@ -7,6 +7,6 @@ namespace Blog.Domain.Drivers
     {
         Post GetById(Guid postId);
         void Add(Post post);
-        void Save();
+        void Save(Post post);
     }
 }

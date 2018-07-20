@@ -12,13 +12,13 @@ namespace Blog.Domain.FunctionalCore
         private PostStatus _status;
 
         private List<IDomainEvent> _events = new List<IDomainEvent>();
-        private readonly Guid _postId;
+        private Guid _postId;
 
         private Post()
         {
-            _postId = Guid.NewGuid();
+           _postId = Guid.NewGuid();
         }
-
+       
         public static Post Start(string author, string title)
         {
             var post = new Post
@@ -45,7 +45,7 @@ namespace Blog.Domain.FunctionalCore
             }
         }
 
-        public Guid GetPostId() => _postId;
+        public Guid PostId => _postId;
 
         public IReadOnlyList<IDomainEvent> GetEvents()
         {

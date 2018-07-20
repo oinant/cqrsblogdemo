@@ -8,26 +8,32 @@ namespace Blog.Infrastructure
 {
     public class PostRepository : IPostRepository
     {
-        private List<Post> _posts;
-
         public Post GetById(Guid postId)
         {
-            return _posts.Single(post => post.GetPostId() == postId);
+            using (var context = new BlogContext())
+            {
+                return context.Posts.Find(postId);
+            }
         }
 
         public void Add(Post post)
         {
-            _posts.Add(post);
+            using (var context = new BlogContext())
+            {
+                context.Posts.Add(post);
+                context.SaveChanges();
+            }
         }
 
-        public void Save()
+        public void Save(Post post)
         {
-            // do nothing, as posts are stored in memory
+            using (var context = new BlogContext())
+            {
+                context.Entry<Post>(post);
+                context.SaveChanges();
+            }
         }
 
-        public PostRepository()
-        {
-            _posts = new List<Post>();
-        }
+       
     }
 }

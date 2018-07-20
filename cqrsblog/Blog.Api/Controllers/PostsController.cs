@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Blog.Api.ViewModels;
 using Blog.Domain.UseCases;
 using Blog.Query.DB;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Storage.Internal;
 
 namespace Blog.Api.Controllers
 {
@@ -55,5 +51,7 @@ namespace Blog.Api.Controllers
             await _mediator.Publish(startPostCommand, CancellationToken.None);
             return Ok();
         }
+
+        
     }
 }

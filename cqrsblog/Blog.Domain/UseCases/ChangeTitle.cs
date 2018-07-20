@@ -24,7 +24,7 @@ namespace Blog.Domain.UseCases
             
             post.ChangeTitle(command.ChangedBy, command.Title);
 
-            _postRepository.Save();
+            _postRepository.Save(post);
 
             await _mediator.PublishAndCommitDomainEvents(post, cancellationToken);
         }
